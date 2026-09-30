@@ -1,0 +1,73 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="job-form-page">
+  <div class="job-form-card">
+    <div class="job-form-header">
+      <p>EMPLOYER PANEL</p>
+
+      <h1>{% if object %} Edit Job {% else %} Post a New Job {% endif %}</h1>
+
+      <span> Add the details of the job opportunity below. </span>
+    </div>
+
+    <form method="POST" class="job-form">
+      {% csrf_token %} {% if form.non_field_errors %}
+      <div class="form-error">{{ form.non_field_errors }}</div>
+      {% endif %}
+
+      <div class="form-group">
+        <label for="{{ form.title.id_for_label }}"> Job Title </label>
+
+        {{ form.title }} {% if form.title.errors %}
+        <div class="field-error">{{ form.title.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.company_name.id_for_label }}"> Company Name </label>
+
+        {{ form.company_name }} {% if form.company_name.errors %}
+        <div class="field-error">{{ form.company_name.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.description.id_for_label }}">
+          Job Description
+        </label>
+
+        {{ form.description }} {% if form.description.errors %}
+        <div class="field-error">{{ form.description.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="{{ form.location.id_for_label }}"> Location </label>
+
+          {{ form.location }} {% if form.location.errors %}
+          <div class="field-error">{{ form.location.errors }}</div>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ form.salary.id_for_label }}"> Salary </label>
+
+          {{ form.salary }} {% if form.salary.errors %}
+          <div class="field-error">{{ form.salary.errors }}</div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="job-form-actions">
+        <button type="submit" class="save-job-btn">
+          {% if object %} Update Job {% else %} Post Job {% endif %}
+        </button>
+
+        <a href="{% url 'job-list' %}" class="cancel-job-btn"> Cancel </a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

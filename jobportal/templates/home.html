@@ -1,0 +1,45 @@
+{% extends "base.html" %} {% block content %}
+
+<section class="hero-section">
+  <div class="hero-content">
+    <p class="hero-label">YOUR CAREER STARTS HERE</p>
+
+    <h1>Find Your Dream Job</h1>
+
+    <p class="hero-description">
+      Discover the right opportunities, connect with great companies, and take
+      the next step in your career.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="{% url 'job-list' %}" class="primary-btn"> Browse Jobs </a>
+
+      {% if not user.is_authenticated %}
+
+      <a href="{% url 'signup' %}" class="secondary-btn"> Create Account </a>
+
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<section class="home-features">
+  <div class="feature-card">
+    <h3>Find Jobs</h3>
+    <p>
+      Search and explore job opportunities based on your skills and preferences.
+    </p>
+  </div>
+
+  <div class="feature-card">
+    <h3>Apply Easily</h3>
+    <p>Apply for jobs quickly and keep track of your applications.</p>
+  </div>
+
+  <div class="feature-card">
+    <h3>Hire Talent</h3>
+    <p>Employers can post jobs and manage applications from one place.</p>
+  </div>
+</section>
+
+{% endblock %}

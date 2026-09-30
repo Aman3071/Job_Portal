@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="error-page">
+
+```
+<div class="error-card">
+
+    <p class="error-code">
+        500
+    </p>
+
+    <h1>
+        Something Went Wrong
+    </h1>
+
+    <p>
+        Sorry, something went wrong on our side.
+        Please try again later.
+    </p>
+
+    <a href="{% url 'home' %}" class="primary-btn">
+        Back to Home
+    </a>
+
+    <a href="{% url 'job-list' %}" class="error-jobs-btn">
+        Browse Jobs
+    </a>
+
+</div>
+```
+
+</div>
+
+{% endblock %}
+

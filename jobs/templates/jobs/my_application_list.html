@@ -1,0 +1,74 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="page-header">
+  <h1>My Applications</h1>
+
+  <p>Track the jobs you have applied for.</p>
+</div>
+
+{% if applications %}
+
+<div class="application-grid">
+  {% for application in applications %}
+
+  <div class="application-card">
+    <div class="application-card-header">
+      <div>
+        <h2>{{ application.job.title }}</h2>
+
+        <p class="application-company">{{ application.job.company_name }}</p>
+      </div>
+
+      {% if application.status == "shortlisted" %}
+
+      <span class="status-badge status-shortlisted"> Shortlisted </span>
+
+      {% elif application.status == "rejected" %}
+
+      <span class="status-badge status-rejected"> Rejected </span>
+
+      {% else %}
+
+      <span class="status-badge status-pending"> Pending </span>
+
+      {% endif %}
+    </div>
+
+    <div class="application-info">
+      <div>
+        <span>Location</span>
+        <strong> {{ application.job.location }} </strong>
+      </div>
+
+      <div>
+        <span>Salary</span>
+        <strong> ₹{{ application.job.salary }} </strong>
+      </div>
+
+      <div>
+        <span>Applied On</span>
+        <strong> {{ application.date_applied }} </strong>
+      </div>
+    </div>
+
+    <div class="application-actions">
+      <a href="{% url 'job-detail' application.job.pk %}" class="view-job-btn">
+        View Job
+      </a>
+    </div>
+  </div>
+
+  {% endfor %}
+</div>
+
+{% else %}
+
+<div class="no-jobs">
+  <h2>No Applications Yet</h2>
+
+  <p>You haven't applied for any jobs yet.</p>
+
+  <a href="{% url 'job-list' %}" class="post-job-btn"> Browse Jobs </a>
+</div>
+
+{% endif %} {% endblock %}

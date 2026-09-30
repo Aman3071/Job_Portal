@@ -1,0 +1,120 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="page-header">
+  <h1>Job Applicants</h1>
+
+  <p>Review applicants and manage their application status.</p>
+</div>
+
+{% if applications %}
+
+<div class="applicants-card">
+  <div class="applicants-table">
+    <div class="applicant-row applicant-header">
+      <div>Applicant</div>
+      <div>Email</div>
+      <div>Applied On</div>
+      <div>Status</div>
+      <div>Action</div>
+    </div>
+
+    {% for application in applications %}
+
+    <div class="applicant-row">
+      <div class="applicant-name">
+        {{ application.applicant.username|capfirst }}
+      </div>
+
+      <div class="applicant-email">{{ application.applicant.email }}</div>
+
+      <div>{{ application.date_applied }}</div>
+
+      <div>
+        {% if application.status == "shortlisted" %}
+
+        <span class="status-badge status-shortlisted"> Shortlisted </span>
+
+        {% elif application.status == "rejected" %}
+
+        <span class="status-badge status-rejected"> Rejected </span>
+
+        {% else %}
+
+        <span class="status-badge status-pending"> Pending </span>
+
+        {% endif %}
+      </div>
+
+      <div>
+        <form
+          method="POST"
+          action="{% url 'update-application-status' application.pk %}"
+          class="status-form"
+        >
+          {% csrf_token %}
+
+          <select name="status">
+            <option
+              value="pending"
+              {%
+              if
+              application.status=""
+              ="pending"
+              %}selected{%
+              endif
+              %}
+            >
+              Pending
+            </option>
+
+            <option
+              value="shortlisted"
+              {%
+              if
+              application.status=""
+              ="shortlisted"
+              %}selected{%
+              endif
+              %}
+            >
+              Shortlisted
+            </option>
+
+            <option
+              value="rejected"
+              {%
+              if
+              application.status=""
+              ="rejected"
+              %}selected{%
+              endif
+              %}
+            >
+              Rejected
+            </option>
+          </select>
+
+          <button type="submit">Update</button>
+        </form>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+
+{% else %}
+
+<div class="no-jobs">
+  <h2>No Applicants Yet</h2>
+
+  <p>No one has applied for this job yet.</p>
+</div>
+
+{% endif %}
+
+<br />
+
+<a href="{% url 'my-jobs' %}" class="back-jobs-btn"> ← Back to My Jobs </a>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="delete-page">
+  <div class="delete-card">
+    <div class="delete-icon">!</div>
+
+    <p class="delete-label">DELETE JOB</p>
+
+    <h1>Delete this job?</h1>
+
+    <p class="delete-message">
+      Are you sure you want to delete
+      <strong>{{ object.title }}</strong>? This action cannot be undone.
+    </p>
+
+    <div class="delete-actions">
+      <form method="POST">
+        {% csrf_token %}
+
+        <button type="submit" class="confirm-delete-btn">
+          Yes, Delete Job
+        </button>
+      </form>
+
+      <a href="{% url 'job-detail' object.pk %}" class="cancel-delete-btn">
+        Cancel
+      </a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

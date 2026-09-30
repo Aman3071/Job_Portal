@@ -1,0 +1,74 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="job-detail-page">
+  <div class="job-detail-card">
+    <div class="job-detail-header">
+      <div>
+        <p class="job-detail-label">JOB DETAILS</p>
+
+        <h1>{{ job.title }}</h1>
+
+        <p class="job-detail-company">{{ job.company_name }}</p>
+      </div>
+
+      <div class="job-detail-location">{{ job.location }}</div>
+    </div>
+
+    <div class="job-detail-info">
+      <div class="job-info-item">
+        <span>Salary</span>
+        <strong>₹{{ job.salary }}</strong>
+      </div>
+
+      <div class="job-info-item">
+        <span>Location</span>
+        <strong>{{ job.location }}</strong>
+      </div>
+
+      <div class="job-info-item">
+        <span>Posted On</span>
+        <strong>{{ job.date_posted }}</strong>
+      </div>
+    </div>
+
+    <div class="job-detail-description">
+      <h2>Job Description</h2>
+
+      <p>{{ job.description }}</p>
+    </div>
+
+    <div class="job-detail-actions">
+      {% if user.is_authenticated %} {% if can_apply %} {% if already_applied %}
+
+      <button class="applied-btn" disabled>Already Applied</button>
+
+      {% else %}
+
+      <form method="POST" action="{% url 'apply-job' job.pk %}">
+        {% csrf_token %}
+
+        <button type="submit" class="apply-btn">Apply Now</button>
+      </form>
+
+      {% endif %} {% elif user.role == "employer" and job.posted_by == user %}
+
+      <a href="{% url 'job-update' job.pk %}" class="edit-job-btn">
+        Edit Job
+      </a>
+
+      <a href="{% url 'job-delete' job.pk %}" class="delete-job-btn">
+        Delete Job
+      </a>
+
+      {% endif %} {% else %}
+
+      <a href="{% url 'login' %}" class="apply-btn"> Login to Apply </a>
+
+      {% endif %}
+
+      <a href="{% url 'job-list' %}" class="back-jobs-btn"> ← Back to Jobs </a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
