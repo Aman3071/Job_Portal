@@ -1611,3 +1611,233 @@ select:focus {
     margin: 10px 0;
   }
 }
+
+/* ========================================
+FINAL PROFESSIONAL UI POLISH
+======================================== */
+
+/* Smooth scrolling and page defaults */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+/* Better navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 3px 15px rgba(17, 24, 39, 0.12);
+}
+
+.navbar-brand {
+  letter-spacing: -0.5px;
+}
+
+.navbar-links a:not(.signup-btn) {
+  transition: color 0.2s ease;
+}
+
+.navbar-links a:not(.signup-btn):hover {
+  color: #93c5fd;
+}
+
+/* Refined home hero */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
+}
+
+.hero-content h1 {
+  letter-spacing: -1.5px;
+  line-height: 1.15;
+}
+
+.hero-label {
+  display: inline-block;
+  padding: 8px 13px;
+  background: #dbeafe;
+  border-radius: 30px;
+}
+
+.primary-btn,
+.secondary-btn,
+.signup-btn,
+.view-job-btn,
+.apply-btn,
+.post-job-btn,
+.auth-btn,
+.save-job-btn {
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.primary-btn:hover,
+.apply-btn:hover,
+.post-job-btn:hover,
+.auth-btn:hover,
+.save-job-btn:hover {
+  box-shadow: 0 5px 14px rgba(37, 99, 235, 0.2);
+}
+
+/* Feature cards */
+.feature-card {
+  border: 1px solid #e5e7eb;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: #bfdbfe;
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.08);
+}
+
+.feature-card h3 {
+  letter-spacing: -0.3px;
+}
+
+/* Consistent cards */
+.job-card,
+.my-job-card,
+.application-card,
+.job-detail-card,
+.job-form-card,
+.auth-card,
+.delete-card,
+.error-card {
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 5px 20px rgba(17, 24, 39, 0.04);
+}
+
+/* Better form controls */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(59, 130, 246, 0.45);
+  outline-offset: 3px;
+}
+
+.job-search input,
+.form-group input,
+.form-group select,
+.job-form textarea,
+.status-form select {
+  min-height: 44px;
+}
+
+/* Consistent headings */
+.page-header h1,
+.job-form-header h1,
+.auth-header h1 {
+  letter-spacing: -0.7px;
+  line-height: 1.2;
+}
+
+/* Footer refinement */
+.footer {
+  border-top: 3px solid #2563eb;
+}
+
+.footer-links a {
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: #93c5fd;
+}
+
+/* Better mobile spacing */
+@media (max-width: 650px) {
+  .hero-content h1 {
+    letter-spacing: -0.8px;
+    line-height: 1.2;
+  }
+
+  .hero-section {
+    border-radius: 12px;
+  }
+
+  .feature-card {
+    padding: 24px;
+  }
+
+  .job-detail-actions form {
+    width: 100%;
+  }
+
+  .navbar {
+    position: relative;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Stylish Post a Job Button */
+.navbar-links a.post-job-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.22);
+  transition: all 0.25s ease;
+}
+
+.navbar-links a.post-job-btn:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 18px rgba(37, 99, 235, 0.35);
+}
+
+.navbar-links a.post-job-btn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 650px) {
+  .navbar-links a.post-job-btn {
+    padding: 9px 15px;
+  }
+}

@@ -1,47 +1,49 @@
 {% load static %}
-
 <!doctype html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Job Portal</title>
-
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
 
   <body>
     <nav class="navbar">
       <div class="navbar-container">
-        <a href="{% url 'home' %}" class="navbar-brand"> Job Portal </a>
+        <a href="{% url 'home' %}" class="navbar-brand">Job Portal</a>
 
         <div class="navbar-links">
-          <a href="{% url 'job-list' %}"> Jobs </a>
+          <a href="{% url 'job-list' %}">Jobs</a>
 
           {% if user.is_authenticated %} {% if user.role == "seeker" %}
-          <a href="{% url 'my-applications' %}"> My Applications </a>
-          {% endif %} {% if user.role == "employer" %}
-          <a href="{% url 'my-jobs' %}"> My Jobs </a>
+          <a href="{% url 'resume-analyzer' %}">AI Resume Analyzer</a>
+          <a href="{% url 'my-applications' %}">My Applications</a>
+
+          {% elif user.role == "employer" %}
+          <a href="{% url 'my-jobs' %}">My Jobs</a>
+          <a href="{% url 'job-create' %}" class="post-job-btn">
+            <span aria-hidden="true">＋</span> Post a Job
+          </a>
           {% endif %}
 
           <span class="navbar-user"> Hi, {{ user.username|capfirst }} </span>
 
           <form method="POST" action="{% url 'logout' %}">
             {% csrf_token %}
-
             <button type="submit" class="logout-btn">Logout</button>
           </form>
 
           {% else %}
-
-          <a href="{% url 'login' %}"> Login </a>
-
-          <a href="{% url 'signup' %}" class="signup-btn"> Signup </a>
-
+          <a href="{% url 'login' %}">Login</a>
+          <a href="{% url 'signup' %}" class="signup-btn">Signup</a>
           {% endif %}
         </div>
       </div>
     </nav>
 
-    <main class="main-content">{% block content %} {% endblock %}</main>
+    <main class="main-content">{% block content %}{% endblock %}</main>
+
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-brand">
@@ -53,20 +55,19 @@
         </div>
 
         <div class="footer-links">
-          <a href="{% url 'home' %}"> Home </a>
-
-          <a href="{% url 'job-list' %}"> Jobs </a>
+          <a href="{% url 'home' %}">Home</a>
+          <a href="{% url 'job-list' %}">Jobs</a>
 
           {% if user.is_authenticated %} {% if user.role == "seeker" %}
-          <a href="{% url 'my-applications' %}"> My Applications </a>
-          {% endif %} {% if user.role == "employer" %}
-          <a href="{% url 'my-jobs' %}"> My Jobs </a>
+          <a href="{% url 'resume-analyzer' %}">AI Resume Analyzer</a>
+          <a href="{% url 'my-applications' %}">My Applications</a>
+
+          {% elif user.role == "employer" %}
+          <a href="{% url 'my-jobs' %}">My Jobs</a>
+          <a href="{% url 'job-create' %}">+ Post a Job</a>
           {% endif %} {% else %}
-
-          <a href="{% url 'login' %}"> Login </a>
-
-          <a href="{% url 'signup' %}"> Signup </a>
-
+          <a href="{% url 'login' %}">Login</a>
+          <a href="{% url 'signup' %}">Signup</a>
           {% endif %}
         </div>
       </div>

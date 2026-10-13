@@ -111,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Kolkata"
 
 USE_I18N = True
 
@@ -137,3 +137,8 @@ MAILERS = {
 
 LOGIN_REDIRECT_URL = "/jobs/"
 LOGOUT_REDIRECT_URL = "/"
+
+
+# Media files (uploaded resumes and generated PDFs)
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"

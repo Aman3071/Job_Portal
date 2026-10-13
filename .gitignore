@@ -1,0 +1,29 @@
+steps.txt
+
+# Python cache
+
+__pycache__/
+*.py[cod]
+
+# Virtual environments and secrets
+
+env_jobportal/
+.env
+venv/
+
+# Local database
+
+db.sqlite3
+
+# Uploaded media and generated resumes
+
+media/
+resumes/
+
+# Local backups
+
+backup_resume_cleanup_*/
+
+# Local AI test script
+
+test_ai.py

@@ -2,8 +2,7 @@
 
 <div class="page-header">
   <h1>Job Applicants</h1>
-
-  <p>Review applicants and manage their application status.</p>
+  <p>Review applicants, view resumes, and manage application status.</p>
 </div>
 
 {% if applications %}
@@ -14,6 +13,7 @@
       <div>Applicant</div>
       <div>Email</div>
       <div>Applied On</div>
+      <div>Resume</div>
       <div>Status</div>
       <div>Action</div>
     </div>
@@ -25,23 +25,38 @@
         {{ application.applicant.username|capfirst }}
       </div>
 
-      <div class="applicant-email">{{ application.applicant.email }}</div>
+      <div class="applicant-email">
+        {{ application.applicant.email|default:"Not provided" }}
+      </div>
 
-      <div>{{ application.date_applied }}</div>
+      <div>{{ application.date_applied|date:"d M Y" }}</div>
+
+      <div class="resume-actions">
+        {% if application.resume %}
+        <a
+          href="{{ application.resume.url }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="resume-btn"
+        >
+          Preview
+        </a>
+
+        <a href="{{ application.resume.url }}" download class="resume-btn">
+          Download
+        </a>
+        {% else %}
+        <span>Resume unavailable</span>
+        {% endif %}
+      </div>
 
       <div>
         {% if application.status == "shortlisted" %}
-
         <span class="status-badge status-shortlisted"> Shortlisted </span>
-
         {% elif application.status == "rejected" %}
-
         <span class="status-badge status-rejected"> Rejected </span>
-
         {% else %}
-
         <span class="status-badge status-pending"> Pending </span>
-
         {% endif %}
       </div>
 
@@ -53,7 +68,7 @@
         >
           {% csrf_token %}
 
-          <select name="status">
+          <select name="status" aria-label="Application status">
             <option
               value="pending"
               {%
@@ -107,7 +122,6 @@
 
 <div class="no-jobs">
   <h2>No Applicants Yet</h2>
-
   <p>No one has applied for this job yet.</p>
 </div>
 
@@ -115,6 +129,6 @@
 
 <br />
 
-<a href="{% url 'my-jobs' %}" class="back-jobs-btn"> ← Back to My Jobs </a>
+<a href="{% url 'my-jobs' %}" class="back-jobs-btn"> &larr; Back to My Jobs </a>
 
 {% endblock %}
