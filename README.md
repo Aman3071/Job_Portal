@@ -168,3 +168,96 @@ Open the application in your browser:
 - GitHub: [Aman3071](https://github.com/Aman3071)
 
 ---
+
+## 💻 How to Run the Project on Another Laptop
+
+Follow these steps to set up and run the project on a new Windows computer.
+
+### Prerequisites
+
+- Python installed
+- Visual Studio Code (recommended)
+- Internet connection
+- Gemini API key for the AI Resume Analyzer
+
+### Step 1: Download the Project
+
+1. Open the [Job Portal GitHub Repository](https://github.com/Aman3071/Job_Portal).
+2. Click **Code → Download ZIP**.
+3. Extract the downloaded ZIP file.
+4. Open the extracted project folder in VS Code.
+
+### Step 2: Open the Terminal
+
+In VS Code, select **Terminal → New Terminal**.
+
+Make sure the terminal is in the project root directory containing `manage.py`.
+
+### Step 3: Create a Virtual Environment
+
+```powershell
+python -m venv env_jobportal
+```
+
+Activate it:
+
+```powershell
+.\env_jobportal\Scripts\Activate.ps1
+```
+
+### Step 4: Install Dependencies
+
+If `requirements.txt` exists, run:
+
+```powershell
+python -m pip install -r requirements.txt
+```
+
+### Step 5: Configure Environment Variables
+
+Create a `.env` file in the project root and add your Gemini API key:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key
+```
+
+Replace the placeholder with your own valid API key. Never upload your API key to GitHub.
+
+### Step 6: Check the Django Project
+
+```powershell
+python manage.py check
+```
+
+### Step 7: Set Up the Database
+
+```powershell
+python manage.py migrate
+```
+
+Optionally, create an administrator account:
+
+```powershell
+python manage.py createsuperuser
+```
+
+### Step 8: Run the Application
+
+```powershell
+python manage.py runserver
+```
+
+Open the application:
+
+- **Job Portal:** http://127.0.0.1:8000/
+- **Django Admin:** http://127.0.0.1:8000/admin/
+
+Press `Ctrl + C` in the terminal to stop the development server.
+
+### Important Notes
+
+- The local SQLite database and uploaded resumes are not included in the GitHub ZIP.
+- Running migrations creates a fresh database; existing users, jobs, and applications will not automatically transfer.
+- The AI Resume Analyzer requires a valid Gemini API key.
+- If a Python package is missing, install it in the active virtual environment.
+- This setup is intended for local development, not production deployment.
